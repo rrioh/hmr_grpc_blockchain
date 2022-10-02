@@ -13,9 +13,10 @@ type BlockchainHandler struct {
 	Blockchain *model.Blockchain
 }
 
-func InitBlockchain(difficulty int) *BlockchainHandler {
+func InitBlockchain(address string, difficulty int) *BlockchainHandler {
 	bch := &BlockchainHandler{
 		Blockchain: &model.Blockchain{
+			Address:    address,
 			Difficulty: difficulty,
 		},
 	}
@@ -44,6 +45,24 @@ func (bch *BlockchainHandler) Mining() error {
 	bch.addBlock(b)
 
 	return nil
+}
+
+func (bch *BlockchainHandler) GetAddressBalance(address string) float64 {
+	bc := bch.Blockchain
+
+	balance := 0.0
+	for _, chain := range bc.Chain {
+		for _, transaction := range chain.Transactions {
+			if transaction.SenderAddress == address {
+				balance -= transaction.Value
+			}
+			if transaction.ReceiverAddress == address {
+				balance += transaction.Value
+			}
+		}
+	}
+
+	return balance
 }
 
 func (bch *BlockchainHandler) IsValidChain() bool {

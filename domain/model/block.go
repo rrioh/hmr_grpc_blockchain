@@ -15,6 +15,7 @@ type Block struct {
 }
 
 type Blockchain struct {
+	Address         string         `json:"address"`
 	Difficulty      int            `json:"difficulty"`
 	Chain           []*Block       `json:"chain"`
 	TransactionPool []*Transaction `json:"transaction_pool"`

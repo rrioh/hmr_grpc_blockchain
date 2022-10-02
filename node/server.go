@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	bch := service.InitBlockchain(3)
+	bch := service.InitBlockchain("BLOCKCHAIN_SERVER_ADDRESS", 3)
 
 	bch.AddTransaction("A", "B", 6.3)
 	bch.AddTransaction("C", "D", 5.2)
