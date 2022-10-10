@@ -3,21 +3,23 @@ package service
 import (
 	"errors"
 	"fmt"
-	"hmr_grpc_blockchain/domain/model"
+	"hmr_grpc_blockchain/pb"
 	"strings"
 )
 
 type BlockchainHandlerInterface interface{}
 
 type BlockchainHandler struct {
-	Blockchain *model.Blockchain
+	Blockchain *pb.Blockchain
 }
+
+type Blockchain pb.Blockchain
 
 func InitBlockchain(address string, difficulty int) *BlockchainHandler {
 	bch := &BlockchainHandler{
-		Blockchain: &model.Blockchain{
+		Blockchain: &pb.Blockchain{
 			Address:    address,
-			Difficulty: difficulty,
+			Difficulty: int32(difficulty),
 		},
 	}
 
@@ -39,7 +41,7 @@ func (bch *BlockchainHandler) Mining() error {
 		return errors.New("transaction does not exist")
 	}
 
-	prevHash := bc.Chain[len(bc.Chain)-1].Hash()
+	prevHash := BlockHash(bc.Chain[len(bc.Chain)-1])
 	b := InitBlock(0, prevHash, bc.TransactionPool)
 	b = bch.proofOfWork(b)
 	bch.addBlock(b)
@@ -68,7 +70,7 @@ func (bch *BlockchainHandler) GetAddressBalance(address string) float64 {
 func (bch *BlockchainHandler) IsValidChain() bool {
 	chain := bch.Blockchain.Chain
 	for i := 0; i < len(chain)-1; i++ {
-		if fmt.Sprintf("%x", chain[i].Hash()) != chain[i+1].PreviousHash {
+		if fmt.Sprintf("%x", BlockHash(chain[i])) != chain[i+1].PreviousHash {
 			return false
 		}
 	}
@@ -78,13 +80,13 @@ func (bch *BlockchainHandler) IsValidChain() bool {
 
 // private
 
-func (bch *BlockchainHandler) proofOfWork(b *model.Block) *model.Block {
+func (bch *BlockchainHandler) proofOfWork(b *pb.Block) *pb.Block {
 	bc := bch.Blockchain
 
-	pow := strings.Repeat("0", bc.Difficulty)
+	pow := strings.Repeat("0", int(bc.Difficulty))
 
 	for {
-		hash := fmt.Sprintf("%x", b.Hash())
+		hash := fmt.Sprintf("%x", BlockHash(b))
 		if strings.HasPrefix(hash, pow) {
 			return b
 		}
@@ -94,10 +96,10 @@ func (bch *BlockchainHandler) proofOfWork(b *model.Block) *model.Block {
 }
 
 // do not reset TransactionPool before this func
-func (bch *BlockchainHandler) addBlock(b *model.Block) {
+func (bch *BlockchainHandler) addBlock(b *pb.Block) {
 	bc := bch.Blockchain
 
 	bc.Chain = append(bc.Chain, b)
 
-	bc.TransactionPool = []*model.Transaction{}
+	bc.TransactionPool = []*pb.Transaction{}
 }

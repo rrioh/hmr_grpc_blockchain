@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package blockchain;
+
+option go_package = "./pb";
+
+message Transaction {
+    string sender_address = 1;
+    string receiver_address = 2;
+    double value = 3;
+}
+message Block {
+    int64 timestamp = 1;
+    int64 nonce = 2;
+    string previous_hash = 3;
+    repeated Transaction transactions = 4;
+}
+message Blockchain {
+    string address = 1;
+    int32 difficulty = 2;
+    repeated Block chain = 3;
+    repeated Transaction transaction_pool = 4;
+}
+message GetBlockchainRequest {
+}
+message GetBlockchainResponse {
+    Blockchain blockchain = 1;
+}
+
+message AddTransactionRequest {
+    string sender_address = 1;
+    string receiver_address = 2;
+    double value = 3;
+}
+message AddTransactionResponse {
+}
+
+service BlockchainService {
+    rpc GetBlockchain (GetBlockchainRequest) returns (GetBlockchainResponse);
+    rpc AddTransaction (AddTransactionRequest) returns (AddTransactionResponse);
+}
