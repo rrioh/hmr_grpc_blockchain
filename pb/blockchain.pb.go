@@ -411,6 +411,261 @@ func (*AddTransactionResponse) Descriptor() ([]byte, []int) {
 	return file_proto_blockchain_proto_rawDescGZIP(), []int{6}
 }
 
+type MiningRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MiningRequest) Reset() {
+	*x = MiningRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_blockchain_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MiningRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MiningRequest) ProtoMessage() {}
+
+func (x *MiningRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_blockchain_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MiningRequest.ProtoReflect.Descriptor instead.
+func (*MiningRequest) Descriptor() ([]byte, []int) {
+	return file_proto_blockchain_proto_rawDescGZIP(), []int{7}
+}
+
+type MiningResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MiningResponse) Reset() {
+	*x = MiningResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_blockchain_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MiningResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MiningResponse) ProtoMessage() {}
+
+func (x *MiningResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_blockchain_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MiningResponse.ProtoReflect.Descriptor instead.
+func (*MiningResponse) Descriptor() ([]byte, []int) {
+	return file_proto_blockchain_proto_rawDescGZIP(), []int{8}
+}
+
+type GetAddressBalanceRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+}
+
+func (x *GetAddressBalanceRequest) Reset() {
+	*x = GetAddressBalanceRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_blockchain_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAddressBalanceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAddressBalanceRequest) ProtoMessage() {}
+
+func (x *GetAddressBalanceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_blockchain_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAddressBalanceRequest.ProtoReflect.Descriptor instead.
+func (*GetAddressBalanceRequest) Descriptor() ([]byte, []int) {
+	return file_proto_blockchain_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetAddressBalanceRequest) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+type GetAddressBalanceResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Balance float64 `protobuf:"fixed64,1,opt,name=balance,proto3" json:"balance,omitempty"`
+}
+
+func (x *GetAddressBalanceResponse) Reset() {
+	*x = GetAddressBalanceResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_blockchain_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAddressBalanceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAddressBalanceResponse) ProtoMessage() {}
+
+func (x *GetAddressBalanceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_blockchain_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAddressBalanceResponse.ProtoReflect.Descriptor instead.
+func (*GetAddressBalanceResponse) Descriptor() ([]byte, []int) {
+	return file_proto_blockchain_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetAddressBalanceResponse) GetBalance() float64 {
+	if x != nil {
+		return x.Balance
+	}
+	return 0
+}
+
+type IsValidChainRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *IsValidChainRequest) Reset() {
+	*x = IsValidChainRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_blockchain_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IsValidChainRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsValidChainRequest) ProtoMessage() {}
+
+func (x *IsValidChainRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_blockchain_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsValidChainRequest.ProtoReflect.Descriptor instead.
+func (*IsValidChainRequest) Descriptor() ([]byte, []int) {
+	return file_proto_blockchain_proto_rawDescGZIP(), []int{11}
+}
+
+type IsValidChainResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IsValid bool `protobuf:"varint,1,opt,name=is_valid,json=isValid,proto3" json:"is_valid,omitempty"`
+}
+
+func (x *IsValidChainResponse) Reset() {
+	*x = IsValidChainResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_blockchain_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IsValidChainResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsValidChainResponse) ProtoMessage() {}
+
+func (x *IsValidChainResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_blockchain_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsValidChainResponse.ProtoReflect.Descriptor instead.
+func (*IsValidChainResponse) Descriptor() ([]byte, []int) {
+	return file_proto_blockchain_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *IsValidChainResponse) GetIsValid() bool {
+	if x != nil {
+		return x.IsValid
+	}
+	return false
+}
+
 var File_proto_blockchain_proto protoreflect.FileDescriptor
 
 var file_proto_blockchain_proto_rawDesc = []byte{
@@ -461,19 +716,48 @@ var file_proto_blockchain_proto_rawDesc = []byte{
 	0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x03,
 	0x20, 0x01, 0x28, 0x01, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x18, 0x0a, 0x16, 0x41,
 	0x64, 0x64, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xc2, 0x01, 0x0a, 0x11, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x54, 0x0a, 0x0d, 0x47,
-	0x65, 0x74, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x12, 0x20, 0x2e, 0x62,
-	0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6c, 0x6f,
-	0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21,
-	0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x42,
-	0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x57, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74,
-	0x69, 0x6f, 0x6e, 0x12, 0x21, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2e, 0x41, 0x64, 0x64, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x0f, 0x0a, 0x0d, 0x4d, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x10, 0x0a, 0x0e, 0x4d, 0x69, 0x6e, 0x69, 0x6e, 0x67,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x34, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x41,
+	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x35,
+	0x0a, 0x19, 0x47, 0x65, 0x74, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x42, 0x61, 0x6c, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x62,
+	0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x01, 0x52, 0x07, 0x62, 0x61,
+	0x6c, 0x61, 0x6e, 0x63, 0x65, 0x22, 0x15, 0x0a, 0x13, 0x49, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64,
+	0x43, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x31, 0x0a, 0x14,
+	0x49, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x69, 0x73, 0x5f, 0x76, 0x61, 0x6c, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x69, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x32,
+	0xb8, 0x03, 0x0a, 0x11, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x53, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x54, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x42, 0x6c, 0x6f, 0x63,
+	0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x12, 0x20, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68,
+	0x61, 0x69, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68,
+	0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x0e, 0x41,
+	0x64, 0x64, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x21, 0x2e,
+	0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x72,
+	0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x22, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x64,
+	0x64, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x06, 0x4d, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x12, 0x19,
+	0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x4d, 0x69, 0x6e, 0x69,
+	0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x62, 0x6c, 0x6f, 0x63,
+	0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x4d, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x41, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x24, 0x2e, 0x62, 0x6c, 0x6f,
+	0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x25, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x47, 0x65,
+	0x74, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x51, 0x0a, 0x0c, 0x49, 0x73, 0x56, 0x61, 0x6c,
+	0x69, 0x64, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x12, 0x1f, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x49, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x43, 0x68, 0x61, 0x69,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x62, 0x6c, 0x6f, 0x63, 0x6b,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x49, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x43, 0x68, 0x61,
+	0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f,
 	0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
@@ -489,30 +773,42 @@ func file_proto_blockchain_proto_rawDescGZIP() []byte {
 	return file_proto_blockchain_proto_rawDescData
 }
 
-var file_proto_blockchain_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_proto_blockchain_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_proto_blockchain_proto_goTypes = []interface{}{
-	(*Transaction)(nil),            // 0: blockchain.Transaction
-	(*Block)(nil),                  // 1: blockchain.Block
-	(*Blockchain)(nil),             // 2: blockchain.Blockchain
-	(*GetBlockchainRequest)(nil),   // 3: blockchain.GetBlockchainRequest
-	(*GetBlockchainResponse)(nil),  // 4: blockchain.GetBlockchainResponse
-	(*AddTransactionRequest)(nil),  // 5: blockchain.AddTransactionRequest
-	(*AddTransactionResponse)(nil), // 6: blockchain.AddTransactionResponse
+	(*Transaction)(nil),               // 0: blockchain.Transaction
+	(*Block)(nil),                     // 1: blockchain.Block
+	(*Blockchain)(nil),                // 2: blockchain.Blockchain
+	(*GetBlockchainRequest)(nil),      // 3: blockchain.GetBlockchainRequest
+	(*GetBlockchainResponse)(nil),     // 4: blockchain.GetBlockchainResponse
+	(*AddTransactionRequest)(nil),     // 5: blockchain.AddTransactionRequest
+	(*AddTransactionResponse)(nil),    // 6: blockchain.AddTransactionResponse
+	(*MiningRequest)(nil),             // 7: blockchain.MiningRequest
+	(*MiningResponse)(nil),            // 8: blockchain.MiningResponse
+	(*GetAddressBalanceRequest)(nil),  // 9: blockchain.GetAddressBalanceRequest
+	(*GetAddressBalanceResponse)(nil), // 10: blockchain.GetAddressBalanceResponse
+	(*IsValidChainRequest)(nil),       // 11: blockchain.IsValidChainRequest
+	(*IsValidChainResponse)(nil),      // 12: blockchain.IsValidChainResponse
 }
 var file_proto_blockchain_proto_depIdxs = []int32{
-	0, // 0: blockchain.Block.transactions:type_name -> blockchain.Transaction
-	1, // 1: blockchain.Blockchain.chain:type_name -> blockchain.Block
-	0, // 2: blockchain.Blockchain.transaction_pool:type_name -> blockchain.Transaction
-	2, // 3: blockchain.GetBlockchainResponse.blockchain:type_name -> blockchain.Blockchain
-	3, // 4: blockchain.BlockchainService.GetBlockchain:input_type -> blockchain.GetBlockchainRequest
-	5, // 5: blockchain.BlockchainService.AddTransaction:input_type -> blockchain.AddTransactionRequest
-	4, // 6: blockchain.BlockchainService.GetBlockchain:output_type -> blockchain.GetBlockchainResponse
-	6, // 7: blockchain.BlockchainService.AddTransaction:output_type -> blockchain.AddTransactionResponse
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0,  // 0: blockchain.Block.transactions:type_name -> blockchain.Transaction
+	1,  // 1: blockchain.Blockchain.chain:type_name -> blockchain.Block
+	0,  // 2: blockchain.Blockchain.transaction_pool:type_name -> blockchain.Transaction
+	2,  // 3: blockchain.GetBlockchainResponse.blockchain:type_name -> blockchain.Blockchain
+	3,  // 4: blockchain.BlockchainService.GetBlockchain:input_type -> blockchain.GetBlockchainRequest
+	5,  // 5: blockchain.BlockchainService.AddTransaction:input_type -> blockchain.AddTransactionRequest
+	7,  // 6: blockchain.BlockchainService.Mining:input_type -> blockchain.MiningRequest
+	9,  // 7: blockchain.BlockchainService.GetAddressBalance:input_type -> blockchain.GetAddressBalanceRequest
+	11, // 8: blockchain.BlockchainService.IsValidChain:input_type -> blockchain.IsValidChainRequest
+	4,  // 9: blockchain.BlockchainService.GetBlockchain:output_type -> blockchain.GetBlockchainResponse
+	6,  // 10: blockchain.BlockchainService.AddTransaction:output_type -> blockchain.AddTransactionResponse
+	8,  // 11: blockchain.BlockchainService.Mining:output_type -> blockchain.MiningResponse
+	10, // 12: blockchain.BlockchainService.GetAddressBalance:output_type -> blockchain.GetAddressBalanceResponse
+	12, // 13: blockchain.BlockchainService.IsValidChain:output_type -> blockchain.IsValidChainResponse
+	9,  // [9:14] is the sub-list for method output_type
+	4,  // [4:9] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_proto_blockchain_proto_init() }
@@ -605,6 +901,78 @@ func file_proto_blockchain_proto_init() {
 				return nil
 			}
 		}
+		file_proto_blockchain_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MiningRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_blockchain_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MiningResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_blockchain_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAddressBalanceRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_blockchain_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAddressBalanceResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_blockchain_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*IsValidChainRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_blockchain_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*IsValidChainResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -612,7 +980,7 @@ func file_proto_blockchain_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_blockchain_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -24,6 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 type BlockchainServiceClient interface {
 	GetBlockchain(ctx context.Context, in *GetBlockchainRequest, opts ...grpc.CallOption) (*GetBlockchainResponse, error)
 	AddTransaction(ctx context.Context, in *AddTransactionRequest, opts ...grpc.CallOption) (*AddTransactionResponse, error)
+	Mining(ctx context.Context, in *MiningRequest, opts ...grpc.CallOption) (*MiningResponse, error)
+	GetAddressBalance(ctx context.Context, in *GetAddressBalanceRequest, opts ...grpc.CallOption) (*GetAddressBalanceResponse, error)
+	IsValidChain(ctx context.Context, in *IsValidChainRequest, opts ...grpc.CallOption) (*IsValidChainResponse, error)
 }
 
 type blockchainServiceClient struct {
@@ -52,12 +55,42 @@ func (c *blockchainServiceClient) AddTransaction(ctx context.Context, in *AddTra
 	return out, nil
 }
 
+func (c *blockchainServiceClient) Mining(ctx context.Context, in *MiningRequest, opts ...grpc.CallOption) (*MiningResponse, error) {
+	out := new(MiningResponse)
+	err := c.cc.Invoke(ctx, "/blockchain.BlockchainService/Mining", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blockchainServiceClient) GetAddressBalance(ctx context.Context, in *GetAddressBalanceRequest, opts ...grpc.CallOption) (*GetAddressBalanceResponse, error) {
+	out := new(GetAddressBalanceResponse)
+	err := c.cc.Invoke(ctx, "/blockchain.BlockchainService/GetAddressBalance", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blockchainServiceClient) IsValidChain(ctx context.Context, in *IsValidChainRequest, opts ...grpc.CallOption) (*IsValidChainResponse, error) {
+	out := new(IsValidChainResponse)
+	err := c.cc.Invoke(ctx, "/blockchain.BlockchainService/IsValidChain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BlockchainServiceServer is the server API for BlockchainService service.
 // All implementations must embed UnimplementedBlockchainServiceServer
 // for forward compatibility
 type BlockchainServiceServer interface {
 	GetBlockchain(context.Context, *GetBlockchainRequest) (*GetBlockchainResponse, error)
 	AddTransaction(context.Context, *AddTransactionRequest) (*AddTransactionResponse, error)
+	Mining(context.Context, *MiningRequest) (*MiningResponse, error)
+	GetAddressBalance(context.Context, *GetAddressBalanceRequest) (*GetAddressBalanceResponse, error)
+	IsValidChain(context.Context, *IsValidChainRequest) (*IsValidChainResponse, error)
 	mustEmbedUnimplementedBlockchainServiceServer()
 }
 
@@ -70,6 +103,15 @@ func (UnimplementedBlockchainServiceServer) GetBlockchain(context.Context, *GetB
 }
 func (UnimplementedBlockchainServiceServer) AddTransaction(context.Context, *AddTransactionRequest) (*AddTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTransaction not implemented")
+}
+func (UnimplementedBlockchainServiceServer) Mining(context.Context, *MiningRequest) (*MiningResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Mining not implemented")
+}
+func (UnimplementedBlockchainServiceServer) GetAddressBalance(context.Context, *GetAddressBalanceRequest) (*GetAddressBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAddressBalance not implemented")
+}
+func (UnimplementedBlockchainServiceServer) IsValidChain(context.Context, *IsValidChainRequest) (*IsValidChainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsValidChain not implemented")
 }
 func (UnimplementedBlockchainServiceServer) mustEmbedUnimplementedBlockchainServiceServer() {}
 
@@ -120,6 +162,60 @@ func _BlockchainService_AddTransaction_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BlockchainService_Mining_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MiningRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlockchainServiceServer).Mining(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockchain.BlockchainService/Mining",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlockchainServiceServer).Mining(ctx, req.(*MiningRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlockchainService_GetAddressBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAddressBalanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlockchainServiceServer).GetAddressBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockchain.BlockchainService/GetAddressBalance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlockchainServiceServer).GetAddressBalance(ctx, req.(*GetAddressBalanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlockchainService_IsValidChain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsValidChainRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlockchainServiceServer).IsValidChain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockchain.BlockchainService/IsValidChain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlockchainServiceServer).IsValidChain(ctx, req.(*IsValidChainRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BlockchainService_ServiceDesc is the grpc.ServiceDesc for BlockchainService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +230,18 @@ var BlockchainService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddTransaction",
 			Handler:    _BlockchainService_AddTransaction_Handler,
+		},
+		{
+			MethodName: "Mining",
+			Handler:    _BlockchainService_Mining_Handler,
+		},
+		{
+			MethodName: "GetAddressBalance",
+			Handler:    _BlockchainService_GetAddressBalance_Handler,
+		},
+		{
+			MethodName: "IsValidChain",
+			Handler:    _BlockchainService_IsValidChain_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

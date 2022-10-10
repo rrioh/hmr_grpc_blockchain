@@ -35,7 +35,28 @@ message AddTransactionRequest {
 message AddTransactionResponse {
 }
 
+message MiningRequest {
+}
+message MiningResponse {
+}
+
+message GetAddressBalanceRequest {
+    string address = 1;
+}
+message GetAddressBalanceResponse {
+    double balance = 1;
+}
+
+message IsValidChainRequest {
+}
+message IsValidChainResponse {
+    bool is_valid = 1;
+}
+
 service BlockchainService {
     rpc GetBlockchain (GetBlockchainRequest) returns (GetBlockchainResponse);
     rpc AddTransaction (AddTransactionRequest) returns (AddTransactionResponse);
+    rpc Mining (MiningRequest) returns (MiningResponse);
+    rpc GetAddressBalance (GetAddressBalanceRequest) returns (GetAddressBalanceResponse);
+    rpc IsValidChain (IsValidChainRequest) returns (IsValidChainResponse);
 }

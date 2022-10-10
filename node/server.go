@@ -91,3 +91,49 @@ func (bs *BlockchainServer) AddTransaction(ctx context.Context, req *pb.AddTrans
 
 	return &pb.AddTransactionResponse{}, nil
 }
+
+func (bs *BlockchainServer) Mining(ctx context.Context, req *pb.MiningRequest) (*pb.MiningResponse, error) {
+	if bs.BlockchainHandler == nil {
+		return nil, errors.New("blockchain does not exist")
+	}
+
+	bch := bs.BlockchainHandler
+	err := bch.Mining()
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.MiningResponse{}, nil
+}
+
+func (bs *BlockchainServer) GetAddressBalance(ctx context.Context, req *pb.GetAddressBalanceRequest) (*pb.GetAddressBalanceResponse, error) {
+	if bs.BlockchainHandler == nil {
+		return nil, errors.New("blockchain does not exist")
+	}
+
+	address := req.Address
+
+	bch := bs.BlockchainHandler
+	balance := bch.GetAddressBalance(address)
+
+	res := &pb.GetAddressBalanceResponse{
+		Balance: balance,
+	}
+
+	return res, nil
+}
+
+func (bs *BlockchainServer) IsValidChain(ctx context.Context, req *pb.IsValidChainRequest) (*pb.IsValidChainResponse, error) {
+	if bs.BlockchainHandler == nil {
+		return nil, errors.New("blockchain does not exist")
+	}
+
+	bch := bs.BlockchainHandler
+	isValid := bch.IsValidChain()
+
+	res := &pb.IsValidChainResponse{
+		IsValid: isValid,
+	}
+
+	return res, nil
+}
