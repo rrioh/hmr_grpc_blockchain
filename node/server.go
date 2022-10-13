@@ -5,6 +5,7 @@ import (
 	"errors"
 	"hmr_grpc_blockchain/domain/model"
 	"hmr_grpc_blockchain/domain/service"
+	"hmr_grpc_blockchain/domain/service/pb_service"
 	"hmr_grpc_blockchain/pb"
 	"log"
 	"net"
@@ -14,7 +15,7 @@ import (
 
 type BlockchainServer struct {
 	pb.UnimplementedBlockchainServiceServer
-	BlockchainHandler *service.BlockchainHandler
+	BlockchainHandler *pb_service.BlockchainHandler
 	Config            *model.ServerConfig
 }
 
@@ -70,7 +71,7 @@ func main() {
 
 func (bs *BlockchainServer) GetBlockchain(ctx context.Context, req *pb.GetBlockchainRequest) (*pb.GetBlockchainResponse, error) {
 	if bs.BlockchainHandler == nil {
-		bch := service.InitBlockchain(bs.Config.Blockchain.Address, bs.Config.Blockchain.Difficulty)
+		bch := pb_service.InitBlockchain(bs.Config.Blockchain.Address, bs.Config.Blockchain.Difficulty)
 		bs.BlockchainHandler = bch
 	}
 

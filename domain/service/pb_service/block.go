@@ -1,4 +1,4 @@
-package service
+package pb_service
 
 import (
 	"crypto/sha256"
