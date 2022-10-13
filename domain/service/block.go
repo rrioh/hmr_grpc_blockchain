@@ -18,7 +18,7 @@ func InitBlock(nonce int64, previousHash [32]byte, transactions []*pb.Transactio
 }
 
 func BlockHash(b *pb.Block) [32]byte {
-	mj, _ := json.Marshal(*b)
+	mj, _ := json.Marshal(b)
 	h := sha256.Sum256(mj)
 	return h
 }
