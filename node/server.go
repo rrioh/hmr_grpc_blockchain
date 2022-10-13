@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"hmr_grpc_blockchain/domain/model"
 	"hmr_grpc_blockchain/domain/service"
 	"hmr_grpc_blockchain/pb"
 	"log"
@@ -11,14 +12,10 @@ import (
 	"google.golang.org/grpc"
 )
 
-const (
-	BLOCKCHAIN_ADDRESS = "BLOCKCHAIN_SERVER_ADDRESS"
-	DIFFICULTRY        = 3
-)
-
 type BlockchainServer struct {
 	pb.UnimplementedBlockchainServiceServer
 	BlockchainHandler *service.BlockchainHandler
+	Config            *model.ServerConfig
 }
 
 func main() {
@@ -29,6 +26,12 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 	blockchainServer := &BlockchainServer{}
+
+	config, err := service.NewServerConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
+	blockchainServer.Config = config
 
 	pb.RegisterBlockchainServiceServer(grpcServer, blockchainServer)
 
@@ -67,7 +70,7 @@ func main() {
 
 func (bs *BlockchainServer) GetBlockchain(ctx context.Context, req *pb.GetBlockchainRequest) (*pb.GetBlockchainResponse, error) {
 	if bs.BlockchainHandler == nil {
-		bch := service.InitBlockchain(BLOCKCHAIN_ADDRESS, DIFFICULTRY)
+		bch := service.InitBlockchain(bs.Config.Blockchain.Address, bs.Config.Blockchain.Difficulty)
 		bs.BlockchainHandler = bch
 	}
 
