@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    container_name: hmr_blockchain_app
+    tty: true
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/root/go/src/hmr_grpc_blockchain
+    command: bash -c "go mod tidy && /bin/bash"
