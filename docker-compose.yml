@@ -5,7 +5,7 @@ services:
     tty: true
     build: .
     ports:
-      - "8080:80"
+      - "8080:8080"
     volumes:
       - .:/root/go/src/hmr_grpc_blockchain
     command: bash -c "go mod tidy && /bin/bash"
