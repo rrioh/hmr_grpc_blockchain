@@ -7,14 +7,24 @@ import (
 	"strings"
 )
 
+/*
+Blockchain構造体を操作する各種メソッドを内包したインターフェース。
+BlockchainHandler構造体が実装している。
+*/
 type BlockchainHandlerInterface interface{}
 
+/*
+BlockchainHandlerInterfaceを実装している構造体。
+Blockchain構造体を内包し、Blockchainに対して各種処理を行うレシーバとなる。
+*/
 type BlockchainHandler struct {
 	Blockchain *pb.Blockchain
 }
 
-type Blockchain pb.Blockchain
-
+/*
+Blockchain構造体の初期化を行う。
+一つ目のブロックはナンス値0、前ブロックのハッシュ値が空のバイト列、トランザクションがnilとなる。
+*/
 func InitBlockchain(address string, difficulty int) *BlockchainHandler {
 	bch := &BlockchainHandler{
 		Blockchain: &pb.Blockchain{
@@ -29,11 +39,20 @@ func InitBlockchain(address string, difficulty int) *BlockchainHandler {
 	return bch
 }
 
+/*
+Blockchainの保有する未取り込みのトランザクションプールにトランザクションを追加する。
+振込人アドレス、引き出し人アドレス、送金額を指定する。
+*/
 func (bch *BlockchainHandler) AddTransaction(sender, receiver string, value float64) {
 	transaction := InitTransaction(sender, receiver, value)
 	bch.Blockchain.TransactionPool = append(bch.Blockchain.TransactionPool, transaction)
 }
 
+/*
+マイニングを行い、ブロックを作成する。
+ブロック作成に伴い、トランザクションプール内のトランザクションは当該ブロックに全て取り込まれ、プールは空になる。
+トランザクションプールが空の場合はマイニングは失敗し、エラーを返却する。
+*/
 func (bch *BlockchainHandler) Mining() error {
 	bc := bch.Blockchain
 
@@ -49,6 +68,10 @@ func (bch *BlockchainHandler) Mining() error {
 	return nil
 }
 
+/*
+対象のアドレスが保有する金額を計算する。
+Blockchain内のトランザクションをはじめから追跡し、最新ブロックに至るまでの取引後の残高を返却する。
+*/
 func (bch *BlockchainHandler) GetAddressBalance(address string) float64 {
 	bc := bch.Blockchain
 
@@ -67,6 +90,10 @@ func (bch *BlockchainHandler) GetAddressBalance(address string) float64 {
 	return balance
 }
 
+/*
+Blockchainが有効かどうかを判定する。
+各ブロックが保有する前ブロックのハッシュ値と、実際の前ブロックのハッシュ値が異なる場合は無効判定となる。
+*/
 func (bch *BlockchainHandler) IsValidChain() bool {
 	chain := bch.Blockchain.Chain
 	for i := 0; i < len(chain)-1; i++ {

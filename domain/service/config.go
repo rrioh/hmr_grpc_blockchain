@@ -8,6 +8,9 @@ import (
 	"github.com/BurntSushi/toml"
 )
 
+/*
+tomlファイルのconfigをもとにmodel.ServerConfig構造体を作成し、返却する。
+*/
 func NewServerConfig() (*model.ServerConfig, error) {
 	var config model.ServerConfig
 
